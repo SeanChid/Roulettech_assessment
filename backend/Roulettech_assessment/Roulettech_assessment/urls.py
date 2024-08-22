@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from . import views
+from roulettech_assess import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/todos/', views.get_todos, name='get-todos'),
+    path('api/todos/add/', views.add_todo, name='add-todo'),
+    path('api/todos/<int:pk>/', views.delete_todo, name='delete-todo'),
 ]
