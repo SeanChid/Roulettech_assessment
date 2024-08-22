@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/todos/', views.get_todos, name='get-todos'),
     path('api/todos/add/', views.add_todo, name='add-todo'),
-    path('api/todos/<int:pk>/', views.delete_todo, name='delete-todo'),
+    path('api/todos/update/<int:pk>/', views.update_todo, name='update-todo'),
+    path('api/todos/delete/<int:pk>/', views.delete_todo, name='delete-todo'),
 ]
