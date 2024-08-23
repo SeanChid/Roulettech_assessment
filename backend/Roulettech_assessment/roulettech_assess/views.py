@@ -27,7 +27,9 @@ def update_todo(request, pk):
     serializer = TodoSerializer(todo, data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data)
+        todos = Todo.objects.all()
+        all_todos_serializer = TodoSerializer(todos, many=True)
+        return Response(all_todos_serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])

@@ -12,7 +12,7 @@ const Completed = (props) => {
         </td>
     ) : (
         <td>
-            {value}
+            {value.toString()}
         </td>
     )
 }

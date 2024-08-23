@@ -20,13 +20,35 @@ const TableRow = (props) => {
             title,
             completed
         }
+
+        axios.put(`http://localhost:8000/api/todos/update/${initialTodoData.id}/`, bodyObj)
+            .then((res) => {
+                setCurrentData(res.data)
+                setIsEditing(false)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     return (
         <tr>
-            <ModeButtons />
-            <Title />
-            <Completed />
+            <ModeButtons
+                isEditing={editMode}
+                changeEditMode={changeEditMode}
+                changeNormalMode={changeNormalMode}
+                deleteRow={deleteRow}
+            />
+            <Title
+                isEditing={editMode}
+                value={title}
+                setTitle={setTitle}
+            />
+            <Completed
+                isEditing={editMode}
+                value={completed}
+                setCompleted={setCompleted}
+            />
         </tr>
     )
 }

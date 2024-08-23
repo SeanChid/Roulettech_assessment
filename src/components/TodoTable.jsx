@@ -20,7 +20,33 @@ const TodoTable = () => {
             })
     }, [])
 
-    const row = currentData.map((el) => <TableRow />)
+    const addRow = () => {
+        axios.post('http://localhost:8000/api/todos/add/', {title: 'New Item', completed: false})
+            .then((res) => {
+                setCurrentData(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    const deleteRow = (id) => {
+        axios.delete(`http://localhost:8000/api/todos/delete/${id}/`)
+            .then((res) => {
+                setCurrentData(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    const row = currentData.map((el) => <TableRow
+        initialTodoData={el}
+        initialEditMode={false}
+        key={el.id}
+        deleteRow={() => deleteRow(el.id)}
+        setCurrentData={setCurrentData}
+    />)
 
     return (
         <div>
@@ -30,8 +56,12 @@ const TodoTable = () => {
                 </thead>
 
                 <tbody>
-                    <TableRow />
+                    {row}
                 </tbody>
+
+                <tfoot>
+                    <AddButton addRow={addRow}/>
+                </tfoot>
             </table>
         </div>
     )
