@@ -16,7 +16,9 @@ def add_todo(request):
     serializer = TodoSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data, status=201)
+        todos = Todo.objects.all()
+        all_todos_serializer = TodoSerializer(todos, many=True)
+        return Response(all_todos_serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
 @api_view(['PUT'])
@@ -32,4 +34,6 @@ def update_todo(request, pk):
 def delete_todo(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
     todo.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    todos = Todo.objects.all()
+    serializer = TodoSerializer(todos, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
