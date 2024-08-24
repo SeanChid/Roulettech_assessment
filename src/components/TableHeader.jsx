@@ -3,7 +3,7 @@ const TableHeader = () => {
         <tr>
             <th></th>
             <th>Title</th>
-            <th>Completed</th>
+            <th>Completion</th>
         </tr>
     )
 }

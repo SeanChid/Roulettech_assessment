@@ -4,12 +4,12 @@ const ModeButtons = (props) => {
 
     if(isEditing) {
         return <td>
-            <button onClick={changeNormalMode}>Save</button>
+            <button className='btn btn-primary' onClick={changeNormalMode}>Save</button>
         </td>
     } else {
         return <td>
-            <button onClick={deleteRow}>Delete</button>
-            <button onClick={changeEditMode}>Edit</button>
+            <button className="btn btn-danger" onClick={deleteRow}>Delete</button>
+            <button className='btn btn-primary'onClick={changeEditMode}>Edit</button>
         </td>
     }
 }

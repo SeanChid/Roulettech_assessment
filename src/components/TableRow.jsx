@@ -21,14 +21,18 @@ const TableRow = (props) => {
             completed
         }
 
-        axios.put(`http://localhost:8000/api/todos/update/${initialTodoData.id}/`, bodyObj)
-            .then((res) => {
-                setCurrentData(res.data)
-                setIsEditing(false)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        if (title !== undefined && title.trim() !== '') {
+            axios.put(`http://localhost:8000/api/todos/update/${initialTodoData.id}/`, bodyObj)
+                .then((res) => {
+                    setCurrentData(res.data)
+                    setIsEditing(false)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        } else {
+            alert('Please enter valid input')
+        }
     }
 
     return (

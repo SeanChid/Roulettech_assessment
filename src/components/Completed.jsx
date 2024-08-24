@@ -5,6 +5,7 @@ const Completed = (props) => {
     return isEditing? (
         <td>
             <input
+                className='form-check-input border border-dark'
                 type='checkbox'
                 checked={value}
                 onChange={(e) => setCompleted(e.target.checked)}
@@ -12,7 +13,7 @@ const Completed = (props) => {
         </td>
     ) : (
         <td>
-            {value.toString()}
+            {value ? 'Completed' : 'Incomplete'}
         </td>
     )
 }

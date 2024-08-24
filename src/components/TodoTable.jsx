@@ -50,7 +50,7 @@ const TodoTable = () => {
 
     return (
         <div>
-            <table>
+            <table className='table table-striped'>
                 <thead>
                     <TableHeader />
                 </thead>
